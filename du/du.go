@@ -18,26 +18,37 @@ func New(volumePath string) *DiskUsage {
 }
 
 // Total free bytes on file system
-func (this *DiskUsage) Free() uint64 {
-	return this.stat.Bfree * uint64(this.stat.Bsize)
+func (d *DiskUsage) Free() uint64 {
+	return d.stat.Bfree * uint64(d.stat.Bsize)
+}
+
+// Total free bytes on file system
+func (d *DiskUsage) FreeDF() uint64 {
+	return d.stat.Bavail * uint64(d.stat.Frsize)
 }
 
 // Total available bytes on file system to an unpriveleged user
-func (this *DiskUsage) Available() uint64 {
-	return this.stat.Bavail * uint64(this.stat.Bsize)
+func (d *DiskUsage) Available() uint64 {
+	return d.stat.Bavail * uint64(d.stat.Bsize)
 }
 
 // Total size of the file system
-func (this *DiskUsage) Size() uint64 {
-	return this.stat.Blocks * uint64(this.stat.Bsize)
+func (d *DiskUsage) Size() uint64 {
+	return d.stat.Blocks * uint64(d.stat.Bsize)
 }
 
 // Total bytes used in file system
-func (this *DiskUsage) Used() uint64 {
-	return this.Size() - this.Free()
+func (d *DiskUsage) Used() uint64 {
+	return d.Size() - d.Free()
 }
 
 // Percentage of use on the file system
-func (this *DiskUsage) Usage() float32 {
-	return float32(this.Used()) / float32(this.Size())
+func (d *DiskUsage) Usage() float32 {
+	return float32(d.Used()) / float32(d.Size())
+}
+
+// DiskRate returns the usage rate of the disk where volumePath is located
+func DiskRate(volumePath string) float32 {
+    d := New(volumePath)
+    return d.Usage()
 }
