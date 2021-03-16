@@ -53,3 +53,9 @@ func (d *DiskUsage) Used() uint64 {
 func (d *DiskUsage) Usage() float32 {
 	return float32(d.Used()) / float32(d.Size())
 }
+
+// DiskRate returns the usage rate of the disk where volumePath is located
+func DiskRate(volumePath string) float32 {
+	d := New(volumePath)
+	return d.Usage()
+}

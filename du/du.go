@@ -22,11 +22,6 @@ func (d *DiskUsage) Free() uint64 {
 	return d.stat.Bfree * uint64(d.stat.Bsize)
 }
 
-// Total free bytes on file system
-func (d *DiskUsage) FreeDF() uint64 {
-	return d.stat.Bavail * uint64(d.stat.Frsize)
-}
-
 // Total available bytes on file system to an unpriveleged user
 func (d *DiskUsage) Available() uint64 {
 	return d.stat.Bavail * uint64(d.stat.Bsize)
