@@ -10,7 +10,7 @@ type DiskUsage struct {
 
 // Returns an object holding the disk usage of volumePath
 // This function assumes volumePath is a valid path
-func NewDiskUsage(volumePath string) *DiskUsage {
+func New(volumePath string) *DiskUsage {
 
 	var stat syscall.Statfs_t
 	syscall.Statfs(volumePath, &stat)

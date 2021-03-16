@@ -13,7 +13,7 @@ type DiskUsage struct {
 
 // Returns an object holding the disk usage of volumePath
 // This function assumes volumePath is a valid path
-func NewDiskUsage(volumePath string) *DiskUsage {
+func New(volumePath string) *DiskUsage {
 
 	h := syscall.MustLoadDLL("kernel32.dll")
 	c := h.MustFindProc("GetDiskFreeSpaceExW")
