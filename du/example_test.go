@@ -9,6 +9,7 @@ import (
 var KB = uint64(1024)
 
 func ExampleDiskRate() {
+	// MB
 	usage := du.New(".")
 	fmt.Println("Free:", usage.Free()/(KB*KB))
 	fmt.Println("Available:", usage.Available()/(KB*KB))
@@ -16,5 +17,5 @@ func ExampleDiskRate() {
 	fmt.Println("Used:", usage.Used()/(KB*KB))
 	fmt.Println("Usage:", usage.Usage()*100, "%")
 
-    fmt.Println(du.DiskRate(".")) // Usage(percent)
+	fmt.Println(du.DiskRate(".")) // Usage(percent)
 }

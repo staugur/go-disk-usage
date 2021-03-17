@@ -15,7 +15,15 @@ go get -u tcw.im/go-disk-usage
 
 ```go
 import "tcw.im/go-disk-usage/du"
-usage := du.New("/path/to")
+
+// The first way
+diskUsage := du.New("/path/to/one")
+
+// The second way (Human-readable, recommend)
+diskInfo := du.DiskInfo("/path/to/two")
+
+// Or get disk usage directly
+percent := du.DiskRate("/path/to")
 ```
 
 ## Compatibility

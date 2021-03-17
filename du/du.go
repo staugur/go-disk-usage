@@ -11,7 +11,6 @@ type DiskUsage struct {
 // Returns an object holding the disk usage of volumePath
 // This function assumes volumePath is a valid path
 func New(volumePath string) *DiskUsage {
-
 	var stat syscall.Statfs_t
 	syscall.Statfs(volumePath, &stat)
 	return &DiskUsage{&stat}
@@ -44,6 +43,26 @@ func (d *DiskUsage) Usage() float32 {
 
 // DiskRate returns the usage rate of the disk where volumePath is located
 func DiskRate(volumePath string) float32 {
-    d := New(volumePath)
-    return d.Usage()
+	d := New(volumePath)
+	return d.Usage()
+}
+
+const KB = uint64(1024)
+
+// Human-readable disk information, in KB (uint64)
+type DiskHumanReadable struct {
+	Total     uint64
+	Used      uint64
+	Free      uint64
+	Available uint64
+	Percent   float32 // Decimal places, you might have to multiply by 100
+}
+
+// DiskInfo returns an instance of DiskHumanReadable (New it)
+func DiskInfo(volumePath string) DiskHumanReadable {
+	d := New(volumePath)
+	return DiskHumanReadable{
+		d.Size() / KB, d.Used() / KB, d.Free() / KB, d.Available() / KB,
+		d.Usage(),
+	}
 }
