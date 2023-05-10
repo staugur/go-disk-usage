@@ -1,20 +1,20 @@
 go-disk-usage
 =============
 
-[![Go Reference](https://pkg.go.dev/badge/tcw.im/go-disk-usage.svg)](https://pkg.go.dev/tcw.im/go-disk-usage)
+[![Go Reference](https://pkg.go.dev/badge/pkg.tcw.im/go-disk-usage.svg)](https://pkg.go.dev/pkg.tcw.im/go-disk-usage)
 
 Get disk usage information like how much space is available, free, and used.  
 
 ## Install
 
 ```bash
-go get -u tcw.im/go-disk-usage
+go get -u pkg.tcw.im/go-disk-usage
 ```
 
 ## Usage
 
 ```go
-import "tcw.im/go-disk-usage/du"
+import "pkg.tcw.im/go-disk-usage/du"
 
 // The first way
 diskUsage := du.New("/path/to/one")
